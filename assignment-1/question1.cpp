@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
 class Student;
 class Mentor;
 class Skill {
@@ -26,16 +25,13 @@ public:
 
 class Sport {
 public:
-    int id; // Sport ID
+    int id;
     string name;
-    string description; // Sport Description
-    Skill requiredSkills[5]; // Fixed-size array for required skills
-    int currentSkills; // Track skills count
-
+    string description;
+    Skill requiredSkills[5];
+    int currentSkills;
     Sport() : id(0), name(""), description(""), currentSkills(0) {}
-
     Sport(int i, string n, string d) : id(i), name(n), description(d), currentSkills(0) {}
-
     void addSkill(const Skill& s) {
         if (currentSkills < 5) {
             requiredSkills[currentSkills++] = s;
@@ -61,9 +57,9 @@ public:
     int studentID;
     string name;
     int age;
-    Sport sportsInterests[5]; // Fixed-size array for sports
-    int currentInterests; // Track sports count
-    Mentor* mentorAssigned; // Pointer to assigned mentor
+    Sport sportsInterests[5]; 
+    int currentInterests;
+    Mentor* mentorAssigned;
 
     Student(int id, string n, int a) : studentID(id), name(n), age(a), mentorAssigned(nullptr), currentInterests(0) {}
 
@@ -85,10 +81,10 @@ class Mentor {
 public:
     int mentorID;
     string name;
-    Sport sportsExpertise[5]; // Fixed-size array for sports
+    Sport sportsExpertise[5];
     int maxLearners;
-    Student* assignedLearners[10]; // Fixed-size array for learners
-    int currentLearners; // Tracks the number of assigned learners
+    Student* assignedLearners[10];
+    int currentLearners;
 
     Mentor(int id, string n, int max) : mentorID(id), name(n), maxLearners(max), currentLearners(0) {}
 
@@ -165,30 +161,21 @@ public:
 
 
 int main() {
-    Mentor m1(101, "Coach Mike", 3);
+    Mentor m1(101, "Coach Aashir", 3);
     m1.sportsExpertise[0] = Sport(1, "Football", "Team sport played with a spherical ball");
     m1.sportsExpertise[1] = Sport(2, "Basketball", "Sport played on a rectangular court");
-
     m1.sportsExpertise[0].addSkill(Skill(1, "Kicking","should know kicking"));
     m1.sportsExpertise[0].addSkill(Skill(2, "Running","should be fast"));
-
-    Student s1(1, "John", 20);
-    Student s2(2, "Alice", 21);
-
+    Student s1(1, "Arshia", 20);
+    Student s2(2, "Alishba", 21);
     s1.updateSportsInterest(Sport(3, "Tennis", "Racquet sport played individually"));
     s2.updateSportsInterest(Sport(4, "Soccer", "Most popular sport worldwide"));
-
     s1.registerForMentorship(m1);
     s2.registerForMentorship(m1);
-
     s1.viewMentorDetails();
-
     m1.viewLearners();
-
     m1.provideGuidance();
-
     m1.removeLearner(&s1);
     m1.viewLearners();
-
     return 0;
 }
